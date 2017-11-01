@@ -15,9 +15,9 @@ p.quotes {
 }
 
 .blag {
-  -webkit-column-width: 80em; /* Chrome, Safari, Opera */
-  -moz-column-width: 80em; /* Firefox */  
-  column-width: 80em;
+  max-width: 640px;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: "left";
 }
-
 
