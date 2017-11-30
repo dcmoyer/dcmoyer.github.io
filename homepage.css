@@ -3,6 +3,13 @@ body {
  /*background-color: #E0FFFF;*/
 }
 
+ul.news {
+  max-width: 500px;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: "left";
+}
+
 p.publications {
   /*line-height: 2;*/
 }
