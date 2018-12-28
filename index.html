@@ -14,47 +14,67 @@
 
 <body>
 
+<div id="wrapper">
+
+<div id="profile">
 <header>
-  <h1>Daniel Moyer</h1>
-  EMAIL: moyerd [at] usc.edu<br>
-  Graduate Student, Computer Science<br>
-  University of Southern California<br>
-  Advisors: Prof. Greg Ver Steeg and Prof. Paul Thompson<br>
-  <a href=https://www.isi.edu/home>Information Sciences Institute</a> and the <a href=https://igc.ini.usc.edu>Imaging Genetics Center</a><br>
+  <div id="name">Daniel Moyer</div>
+
+  <div id="profile_info">
+    <p>Computer Science Ph.D. Candidate</p>
+    <p>University of Southern California</p>
+  </div>
+
+  <div>
+    <ul id="profile_links">
+      <li><a href=https://www.isi.edu/home>ISI</a></li>
+      <li><a href=https://igc.ini.usc.edu>IGC</a></li>
+      <li><a href="CV.pdf">CV circa Dec 2018</a></li>
+      <li class="nobullet"><a href="http://twitter.com/dc_moyer"> Twitter</a></li>
+    </ul>
+  </div>
+  <div id="profile_contact">
+    moyerd [at] aardvark.usc.edu<br>
+    (no animal in actual address)
+  </div>
 </header>
-  
-<hr>
+</div> <!--end of profile-->
 
-<h3>Things I do:</h3>
-<ul>
-    <li>Machine Learning</li>
-    <li>Statistics</li>
-    <li>Neuroscience/Neuroimaging</li>
-</ul>
+<div id="content">
 
-<a href="CV.pdf">Curriculum Vitae</a> circa August 07 2018<br>
+<div id="subsection">
+<h1><span>About Me</span></h1>
+<p>
+I am a 5th year CS grad student at USC.
+My research is focused on machine learning and its applications to
+medical imaging, specifically MRI and the human brain. My advisors are 
+Greg Ver Steeg and Paul Thompson.
+</p>
+</div>
 
-<h3>Recent Past and Near Future:</h3>
+<div id="subsection">
+
+<h1><span>News</span></h1>
 <ul class="news">
-  <li><b>2018-12-01:</b> Headed to NeurIPS (Neural Information Processing Systems) in
+  <li><b>2018-12-01:</b> Went to NeurIPS (Neural Information Processing Systems) in
 Montreal to present 
-<i>Invariant Representations without Adversarial Training</i>
-[<a href="https://arxiv.org/abs/1805.09458">arXiv link</a>]
-Drop me an email if you want to meet.
+<span class="pub_title">Invariant Representations without Adversarial Training</span>
+[<a href="https://arxiv.org/abs/1805.09458">arXiv</a>].
   <li><b>2018-11-28:</b> We've renamed our paper from
-<i>Evading the Adversary in Invariant Representations</i> to
-<i>Invariant Representations without Adversarial Training</i>
-[<a href="https://arxiv.org/abs/1805.09458">arXiv link</a>], hopefully that should
+<span class="pub_title">Evading the Adversary in Invariant Representations</span> to
+<span class="pub_title">Invariant Representations without Adversarial Training</span>
+[<a href="https://arxiv.org/abs/1805.09458">arXiv</a>], hopefully that should
 clear up some confusion.
   <li><b>2018-09-18:</b> Congrats to Fabian Corlier on his accepted paper
 at <a href="http://www.sipaim.org/">SIPAIM-18</a>!
-  <li><b>2018-09-16 thru 09-20:</b> Went to <a href="http://www.miccai2018.org/en/">MICCAI 2018</a>,
+  <li><b>2018-09-16:</b> Went to <a href="http://www.miccai2018.org/en/">MICCAI 2018</a>,
 it was a great conference! I gave at talk at the
 <a href="http://cmic.cs.ucl.ac.uk/cdmri/">CDMRI Workshop</a>, and won their
 Best Oral Presentation.</li>
+  <!--
   <li><b>2018-09-05:</b> Our paper
-<i>Invariant Representations without Adversarial Training</i>
-[<a href="https://arxiv.org/abs/1805.09458">arXiv link</a>]
+<span class="pub_title">Invariant Representations without Adversarial Training</span>
+[<a href="https://arxiv.org/abs/1805.09458">arXiv</a>]
 got into NIPS 2018!</li>
   <li><b>2018-07-23:</b> Congrats to Anvar Kurmukov, Ayagoz Musabaeva, Yulia
 Dodonova, and Boris Gutman for their accepted paper on concensus clustering
@@ -64,10 +84,9 @@ and the associated <a href="https://ohbm.github.io/hackathon2018/">BrainHack</a>
 in Singapore. Tim Van Mourik, Dominik Krzeminski, and I worked together on
 <a href="https://github.com/TimVanMourik/Armadillo" >ARmadillo</a>, an
 augmented reality prototype for brain data.</li>
-  <li><b>2018-06-12:</b> Posted <i>Measures of Tractography Converence</i> to
-<a href="https://arxiv.org/abs/1806.04634">the arXiv</a>, just in time for OHBM!</li>
-  <!--
-  <li><b>2018-05-25:</b> Posted <i>Evading the Adversary in Invariant Representation</i> to
+  <li><b>2018-06-12:</b> Posted <span class="pub_title">Measures of Tractography Converence</span> to
+<a href="https://arxiv.org/abs/1806.04634">the arXiv</a>.</li>
+  <li><b>2018-05-25:</b> Posted <span class="pub_title">Evading the Adversary in Invariant Representation</span> to
 <a href="https://arxiv.org/abs/1805.09458">the arXiv</a>. Let me know what you think.</li>
   <li><b>2018-04-09 thru 04-14:</b> Thank you to <a href="https://www.indiana.edu/~cortex/index.html">Olaf Sporns</a> and
 his
@@ -98,17 +117,23 @@ on Sunday Dec 10 at IPAM, UCLA. Also went to NIPS all week.</li>
   -->
 </ul>
 
-<h3>What I am reading right now:</h3>
+</div> <!--end of subsection-->
+
+<!--
+<h1>What I am reading right now:</h1>
 <ul class="news">
-  <li><i>Hofstadter</i>, G&ouml;del, Escher, Bach
+  <li><span class="pub_title">Hofstadter</span>, G&ouml;del, Escher, Bach
     [<a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach">link</a>]</li>
-  <li><i>Zinsser</i>, On Writing Well, The Classic Guide to Writing Nonfiction
+  <li><span class="pub_title">Zinsser</span>, On Writing Well, The Classic Guide to Writing Nonfiction
     [<a href="https://www.amazon.com/Writing-Well-Classic-Guide-Nonfiction/dp/0060891548">link</a>]</li>
-  <!--<li><i>Kondo</i>, The Life-Changing Magic of Tidying Up
+-->
+  <!--<li><span class="pub_title">Kondo</span>, The Life-Changing Magic of Tidying Up
     [<a href="https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308">link</a>]</li>-->
-  <!--<li><i>Rasmussen and Williams</i>, Gaussian Processes for Machine Learning
+  <!--<li><span class="pub_title">Rasmussen and Williams</span>, Gaussian Processes for Machine Learning
     [<a href="http://www.gaussianprocess.org/gpml/chapters/">link</a>]</li>-->
+<!--
 </ul>
+-->
 
 
 <!--<p>Things that are cool:</p>
@@ -119,78 +144,97 @@ on Sunday Dec 10 at IPAM, UCLA. Also went to NIPS all week.</li>
 </ul>
 -->
 
-<hr>
+<div id="subsection">
+<h1><span>Selected Publications and Preprints</span></h1>
 
-<h3>Selected Publications and Preprints:</h3>
 <h4>See the full list here: [<a href="pubs.html">link</a>]</h4>
+<br>
 
-<p class="publications">
 <ol>
 
 <li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1805.09458">Invariant Representations without Adversarial Training</a></span><br>
 <b>D Moyer</b>, S Gao, R Brekelmans, G Ver Steeg, A Galstyan<br>
-<i>Invariant Representations without Adversarial Training</i><br>
 Neural Information Processing Systems (NIPS) 2018
+<div id="pub_notes">
 <ul>
   <li><a href="https://arxiv.org/abs/1805.09458">Paper (arXiv)</a> | <a href="https://github.com/dcmoyer/inv-rep">Code (GitHub)</a></li>
   <li>Formerly titled "Evading the Adversary in Invariant Representations"</li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1806.04634">Measures of Tractography Convergence</a></span><br>
 <b>D Moyer</b>, PM Thompson, G Ver Steeg<br>
-<i>Measures of Tractography Convergence</i><br>
-MICCAI CDMRI (Computational Diffusion MRI) Workshop, September 2018<br>
+MICCAI CDMRI (Computational Diffusion MRI) Workshop, 2018<br>
+<div id="pub_notes">
 <ul>
   <li><a href="https://arxiv.org/abs/1806.04634">Paper (arXiv)</a> | Code | Slides </li>
   <li>Best Oral Presentation Award</li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
+<span class="pub_title"><a href="https://www.ncbi.nlm.nih.gov/pubmed/28487128">Continuous Representations of Brain Connectivity using Spatial Point Processes</a></span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson<br>
-<i>Continuous Representations of Brain Connectivity using Spatial Point Processes</i><br>
 Medical Image Analysis (MedIA) 2017.
+<div id="pub_notes">
 <ul>
   <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/28487128">Paper (PubMed)</a> | <a href="https://github.com/dcmoyer/concon">Code (GitHub)</a> </li>
   <li>Journal form of <a href="#miccai2016">Continuous Connectivity, MICCAI 2016</a></li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1703.00981">A Restaurant Process Mixture Model for Connectivity Based Parcellation of the Cortex</a></span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, PM Thompson<br>
-<i>A Restaurant Process Mixture Model for Connectivity Based Parcellation of the Cortex</i><br>
 Information Processing in Medical Imaging (IPMI) 2017.
+<div id="pub_notes">
 <ul>
   <li><a href="https://arxiv.org/abs/1703.00981">Paper PDF (arXiv)</a></li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
 <a name="miccai2016"></a>
+<span class="pub_title"><a href="https://arxiv.org/abs/1610.03809">A Continuous Model of Cortical Connectivity</a></span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson<br>
-<i>A Continuous Model of Cortical Connectivity</i><br>
-International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) pp. 157-165. Springer International Publishing, 2016.
+Medical Image Computing and Computer Assisted Intervention (MICCAI), 2016.
+<div id="pub_notes">
 <ul>
   <li><a href="https://arxiv.org/abs/1610.03809">Paper PDF (arXiv)</a> | <a href="https://github.com/dcmoyer/concon">Code (GitHub)</a> | <a href="https://youtu.be/HobRGyTOUQs?t=47m37s">Talk (YouTube)</a></li>
-  <li>Oral Presentation <!--(~3% of papers)--> | Student Travel Grant | Young Scientist Award (Top 5 student/post-doc paper)</li>
-</ul><br>
+  <li>Oral Presentation <!--(~3% of papers)--> | Travel Grant | Young Scientist Award (Top 5 student papers)</li>
+</ul>
+</div>
 </li>
-</p>
+
+
 </ol>
 
-<br>
-<hr>
+</div> <!--end of subsection-->
+
+<h1></h1>
+
 <blockquote cite="Lipman Bers">
     Mathematics is very much like poetry. What makes a good poem -- a great poem -- is that there is a large amount of thought expressed in very few words.
     In this sense
     \[e^{\pi i} + 1 = 0 ~~~\text{ or }~~~ \int_{-\infty}^{\infty} e^{-x^2}dx = \sqrt{\pi}\]
-    are poems<br><br>
+    are poems<br>
     <i>Lipman Bers</i>
 </blockquote>
 
+<br>
 <p>
 <a href="fnord.html">Other random stuff</a> (unsorted).
+
+<br>
+<br>
+<p>
+This website design was copied lock-stock-and-barrel from <a href="http://samfway.com/">Sam Way</a>.
 </p>
 
 <script>
@@ -204,5 +248,8 @@ International Conference on Medical Image Computing and Computer-Assisted Interv
 
 </script>
 
+</div> <!--end of content-->
+
+</div> <!--end of wrapper-->
 </body>
 </html>

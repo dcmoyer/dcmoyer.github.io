@@ -14,180 +14,214 @@
 
 <body>
 
+<!-- TODO: add paper links to titles... -->
+<!-- TODO: find out why this page is 15px bigger... -->
+
+<div id="wrapper">
+
+<div id="profile">
+
 <header>
-  <h1><a href="index.html">Daniel Moyer</a></h1>
-  EMAIL: moyerd [at] usc.edu<br>
-  Graduate Student, Computer Science<br>
-  University of Southern California<br>
-  Advisors: Prof. Greg Ver Steeg and Prof. Paul Thompson<br>
-  <a href=https://www.isi.edu/home>Information Sciences Institute</a> and the <a href=https://igc.ini.usc.edu>Imaging Genetics Center</a><br>
+  <div id="name"><a href="index.html">Daniel Moyer [home]</a></div>
+
+  <div id="profile_info">
+    <p>Computer Science Ph.D. Candidate</p>
+    <p>University of Southern California</p>
+  </div>
+
+  <div>
+    <ul id="profile_links">
+      <li><a href=https://www.isi.edu/home>ISI</a></li>
+      <li><a href=https://igc.ini.usc.edu>IGC</a></li>
+      <li><a href="CV.pdf">CV circa Dec 2018</a></li>
+      <li class="nobullet"><a href="http://twitter.com/dc_moyer"> Twitter</a></li>
+    </ul>
+  </div>
+  <div id="profile_contact">
+    moyerd [at] aardvark.usc.edu<br>
+    (no animal in actual address)
+  </div>
 </header>
-  
-<hr>
 
+</div> <!--end of profile-->
 
-<h3>Publications and Preprints:</h3>
-<p class="publications">
+<div id="content">
+
+<div id="subsection">
+<h1><span>Publications and Preprints</span></h1>
+
+<p>
+Publication standards differ significantly between Computer Science,
+Neuroscience, and other fields. In CS, conference proceedings are the main
+venue for publications, with top conferences (e.g. NeurIPS, ICML, ICLR)
+being roughly equivalent to a mid-tier journal. In neuroscience, journal
+publications are the usual milestone, and conference abstracts are not
+considered "papers", but <i>are</i> referred to (e.g. OHBM, SFN, ISMRM).<br><br><br>
+</p>
+
 <ol>
 
 <li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1805.09458">Invariant Representations without Adversarial Training</a></span><br>
 <b>D Moyer</b>, S Gao, R Brekelmans, G Ver Steeg, A Galstyan<br>
-<i>Invariant Representations without Adversarial Training</i><br>
 Neural Information Processing Systems (NIPS) 2018
+<div id="pub_notes">
 <ul>
   <li><a href="https://arxiv.org/abs/1805.09458">Paper (arXiv)</a> | <a href="https://github.com/dcmoyer/inv-rep">Code (GitHub)</a></li>
   <li>Formerly titled "Evading the Adversary in Invariant Representations"</li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
-<b>D Moyer</b>, PM Thompson, G Ver Steeg<br>
-<i>Measures of Tractography Convergence</i><br>
-MICCAI CDMRI (Computational Diffusion MRI) Workshop, September 2018<br>
-<ul>
-  <li><a href="https://arxiv.org/abs/1806.04634">Paper (arXiv)</a> | Code | Slides </li>
-  <li>Best Oral Presentation Award</li>
-</ul><br>
-</li>
-
-<li>
+<span class="pub_title"><a href="https://www.ncbi.nlm.nih.gov/pubmed/28487128">Continuous Representations of Brain Connectivity using Spatial Point Processes</a></span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson<br>
-<i>Continuous Representations of Brain Connectivity using Spatial Point Processes</i><br>
 Medical Image Analysis (MedIA) 2017.
+<div id="pub_notes">
 <ul>
   <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/28487128">Paper (PubMed)</a> | <a href="https://github.com/dcmoyer/concon">Code (GitHub)</a> </li>
   <li>Journal form of <a href="#miccai2016">Continuous Connectivity, MICCAI 2016</a></li>
-</ul><br>
+</ul>
+</div>
 </li>
 
 <li>
+<span class="pub_title">Evaluating 35 Methods to Generate Structural Connectomes Using Pairwise Classification</span><br>
 D Petrov, A Ivanov, J Faskowitz, B Gutman, <b>D Moyer</b>, J Villalon, N Jahanshad, PM Thompson<br>
-<i>Evaluating 35 Methods to Generate Structural Connectomes Using Pairwise Classification</i><br>
-International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2017.
-<ul>
-  <li>In Press</li>
-</ul><br>
+Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2017.
+<div id="pub_notes"><ul>
+  <li><a href="https://arxiv.org/abs/1706.06031">Paper PDF (arXiv)</a></li>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Reskit: a library for creating and curating reproducible pipelines for scientific machine learning</span><br>
 A Ivanov, D Petrov, <b>D Moyer</b>, M Belyaev, PM Thompson<br>
-<i>Reskit: a library for creating and curating reproducible pipelines for scientific machine learning</i><br>
 SciPy 2017.
-<ul>
+<div id="pub_notes"><ul>
   <li>Oral Presentation</li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">A Restaurant Process Mixture Model for Connectivity Based Parcellation of the Cortex</span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, PM Thompson<br>
-<i>A Restaurant Process Mixture Model for Connectivity Based Parcellation of the Cortex</i><br>
 Information Processing in Medical Imaging (IPMI) 2017.
-<ul>
+<div id="pub_notes"><ul>
   <li><a href="https://arxiv.org/abs/1703.00981">Paper PDF (arXiv)</a></li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
 <a name="miccai2016"></a>
+<span class="pub_title">A Continuous Model of Cortical Connectivity</span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson<br>
-<i>A Continuous Model of Cortical Connectivity</i><br>
-International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) pp. 157-165. Springer International Publishing, 2016.
-<ul>
+Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2016.
+<div id="pub_notes"><ul>
   <li><a href="https://arxiv.org/abs/1610.03809">Paper PDF (arXiv)</a> | <a href="https://github.com/dcmoyer/concon">Code (GitHub)</a> | <a href="https://youtu.be/HobRGyTOUQs?t=47m37s">Talk (YouTube)</a></li>
-  <li>Oral Presentation <!--(~3% of papers)--> | Student Travel Grant | Young Scientist Award (Top 5 student/post-doc paper)</li>
-</ul><br>
+  <li>Oral Presentation <!--(~3% of papers)--> | Travel Grant | Young Scientist Award (Top 5 student papers)</li>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Cortical Connectome Registration Using Spherical Daemons</span><br>
 D Isaef, B Gutman, <b>D Moyer</b>, J Faskowitz, PM Thompson<br>
-<i>Cortical Connectome Registration Using Spherical Daemons</i><br>
 SIPAIM 2016
-<ul>
+<div id="pub_notes"><ul>
 <li>Oral Presentation</li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Topic Time Series Analysis of Microblogs</span><br>
 EL Lai, <b>D Moyer</b>, B Yuan, E Fox, B Hunter, AL Bertozzi, J Brantingham<br>
-<i>Topic Time Series Analysis of Microblogs</i><br>
 IMA Journal of Applied Math (2016) 81 (3): 409-431
-<ul>
+<div id="pub_notes"><ul>
 <li><a href=http://imamat.oxfordjournals.org/content/81/3/409.full.pdf+html>Paper PDF (Open Access)</a></li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Blockmodels for Connectome Analysis</span><br>
 <b>D Moyer</b>, B Gutman, G Prasad, J Faskowitz, G Ver Steeg, PM Thompson<br>
-<i>Blockmodels for Connectome Analysis</i><br>
 SIPAIM 2015
-<ul>
+<div id="pub_notes"><ul>
 <li><a href="pubs/blockmodels-connectome-analysis.pdf">Paper PDF</a></li>
 <li>Oral Presentation</li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Single Trial Decoding of Belief Decision Making from EEG and fMRI Data Using ICA Features</span><br>
 P Douglas, E Lau, A Anderson, W Kerr, A Head, MA Wollner, <b>D Moyer</b>, M Durnhofer, W Li, J Bramen,  MS Cohen<br>
-<i>Single Trial Decoding of Belief Decision Making from EEG and fMRI Data Using ICA Features</i><br>
 Frontiers in Human Neuroscience, 2013, 7:392. PMID: 23914164<br>
-</p>
 </li>
-
 </ol>
+<br>
 
-<h3>Workshop Publications:</h3>
-<p class="publications">
+<h1><span>Workshop Publications</span></h1>
 <ol>
 
 <li>
-<b>D Moyer</b>, B Gutman, N Jahanshad, PM Thompson<br>
-<i>Product Space Decompositions for Continuous Representations of Brain Connectivity</i><br>
-8th International Workshop on Machine Learning in Medical Imaging (MICCAI-MLMI) 2017.
+<span class="pub_title"><a href="https://arxiv.org/abs/1806.04634">Measures of Tractography Convergence</a></span><br>
+<b>D Moyer</b>, PM Thompson, G Ver Steeg<br>
+MICCAI CDMRI (Computational Diffusion MRI) Workshop, 2018<br>
+<div id="pub_notes">
 <ul>
+  <li><a href="https://arxiv.org/abs/1806.04634">Paper (arXiv)</a> | Code | Slides </li>
+  <li>Best Oral Presentation Award</li>
+</ul>
+</div>
+</li>
+
+<li>
+<span class="pub_title">Product Space Decompositions for Continuous Representations of Brain Connectivity</span><br>
+<b>D Moyer</b>, B Gutman, N Jahanshad, PM Thompson<br>
+MICCAI-MLMI (Machine Learning in Medical Imaging) 2017.
+<div id="pub_notes"><ul>
   <li><a href="pubs/product-space-decompositions.pdf">Paper PDF</a></li>
   <li><a href="pubs/product-space-decompositions-supp.pdf">Supplemental Notes PDF</a></li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Empirical Degree of Continuous Connectivity Degree Sequence Equivalents</span><br>
 <b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson<br>
-<i>Empirical Degree of Continuous Connectivity Degree Sequence Equivalents</i><br>
 MICCAI-BACON (Brain Analysis using Connectivity Networks) 2016
-<ul>
+<div id="pub_notes"><ul>
   <li><a href="https://arxiv.org/abs/1611.06197">Paper PDF (arXiv)</a></li>
   <li>Oral Presentation</li>
-</ul><br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Mixed Membership Stochastic Blockmodels for the Human Connectome</span><br>
 <b>D Moyer</b>, B Gutman, G Prasad, G Ver Steeg, PM Thompson, <br>
-<i>Mixed Membership Stochastic Blockmodels for the Human Connectome</i><br>
 MICCAI BAMBI (Bayesian and Graphical Models in Biomedical Imaging) Workshop, October 2015
-<ul>
+<div id="pub_notes"><ul>
 <li><a href="pubs/mixed-membership-stochastic.pdf">Paper PDF</a></li>
 <li>Oral Presentation</li>
-</ul>
-<br>
+</ul></div>
 </li>
 
 <li>
+<span class="pub_title">Alzheimer’s Disease Classification with Novel Microstructural Metrics from Diffusion-Weighted MRI</span><br>
 TM Nir, JE Villalon, B Gutman, <b>D Moyer</b>, N Jahanshad, CR Jack Jr, M Weiner, PM Thompson, the Alzheimer’s Disease Neuroimaging Initiative (ADNI)<br>
-<i>Alzheimer’s Disease Classification with Novel Microstructural Metrics from Diffusion-Weighted MRI</i><br>
 MICCAI CDMRI (Computational Diffusion MRI) Workshop, October 2015<br>
-<br>
 </li>
-
 
 <li>
+<span class="pub_title">Determining the Influence of Reddit Posts on Wikipedia Pageviews</span><br>
 <b>D Moyer</b>, T Dye, SL Carson, RT Carson, D Goldbaum<br>
-<i>Determining the Influence of Reddit Posts on Wikipedia Pageviews</i><br>
 ICWSM Workshop on Wikipedia, 2015. <br>
-<ul>
+<div id="pub_notes"><ul>
 <li><a href="pubs/reddit_influence.pdf">Paper PDF</a>
-</ul>
+</ul></div>
 </li>
-</p>
+
 </ol>
+
+</div> <!--end of subsection-->
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -199,6 +233,10 @@ ICWSM Workshop on Wikipedia, 2015. <br>
   ga('send', 'pageview');
 
 </script>
+
+</div> <!--end of content-->
+
+</div> <!--end of wrapper-->
 
 </body>
 </html>
