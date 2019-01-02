@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Homepage of USC CS Ph.D. student Daniel Moyer.">
+  <title>DCM</title>
+  <script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <link rel="stylesheet" type="text/css" href="homepage.css">
+</head>
+
+<body>
+
+<!-- TODO: add paper links to titles... -->
+<!-- TODO: find out why this page is 15px bigger... -->
+
+<div id="wrapper">
+
+<div id="profile">
+
+<header>
+  <div id="name"><a href="index.html">Daniel Moyer [home]</a></div>
+
+  <div id="profile_info">
+    <p>Computer Science Ph.D. Candidate</p>
+    <p>University of Southern California</p>
+  </div>
+
+  <div>
+    <ul id="profile_links">
+      <li><a href=https://www.isi.edu/home>ISI</a></li>
+      <li><a href=https://igc.ini.usc.edu>IGC</a></li>
+      <li><a href="CV.pdf">CV circa Dec 2018</a></li>
+      <li class="nobullet"><a href="http://twitter.com/dc_moyer"> Twitter</a></li>
+    </ul>
+  </div>
+  <div id="profile_contact">
+    moyerd [at] aardvark.usc.edu<br>
+    (no animal in actual address)
+  </div>
+</header>
+
+</div> <!--end of profile-->
+
+<div id="content">
+
+<div id="subsection">
+<h1><span>Research</span></h1>
+
+This page is still under construction.
+<br>
+
+</div> <!--end of subsection-->
+
+<div id="subsection">
+<h1><span>Invariant Representations<a id="#inv-rep"></a></span></h1>
+
+Often we want a representation of our data that is invariant to known
+outside factors: we want scans invariant to site/scanner (data harmonization),
+image representations invariant to scale and/or rotations (e.g. SIFT), and
+predictions that are uninformative of protected classes ("fair" predictions).
+
+<br />
+<br />
+
+As it turns out these are all cases of a general representation learning problem,
+where we'd like to learn code <i>z</i> that represents data <i>x</i> well,
+yet be uninformed of an outside variable <i>s</i>:
+
+\[\min L(z|x) \text{ subject to }z \perp s\]
+
+Here, <i>L</i> is a general loss function which could be an auto-encoder loss,
+some prediction task, or something entirely different.
+
+<br />
+<br />
+
+<img src="imgs/inv-rep.jpg" itemprop="image" align=left width="250">
+This series of papers starts with our NeurIPS paper, which details how to build
+such a representation using a Variational Auto-Encoder (VAE), and a relaxation
+of the independence constraint to mutual information. The intution of the result
+is that compression and conditional reconstruction leads to invariance.
+
+<br />
+<br />
+
+Forthcoming work places this in the context of data harmonization for
+diffusion MRI.
+
+<br />
+<br />
+
+
+<br>
+
+</div> <!--end of subsection-->
+
+<div id="subsection">
+<h1><span>Continuous Connectivity</span></h1>
+<a id="#inv-rep"><img src="imgs/r57.jpg" width="540"></a>
+
+
+</div> <!--end of subsection-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46060370-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</div> <!--end of content-->
+
+</div> <!--end of wrapper-->
+
+</body>
+</html>
+
+
