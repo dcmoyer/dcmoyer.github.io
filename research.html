@@ -50,7 +50,12 @@
 <div id="subsection">
 <h1><span>Research</span></h1>
 
-This page is still under construction.
+I have been fortunate enough to have coherant narratives for most of my work.
+Several projects span more than one paper. I have tried to have a coherent
+program of research for all of these projects (with varying degrees of success).
+<br>
+<br>
+I'm happy to talk about any of them, so please drop me an email.
 <br>
 
 </div> <!--end of subsection-->
@@ -79,7 +84,7 @@ some prediction task, or something entirely different.
 <br />
 
 <img src="imgs/inv-rep.jpg" itemprop="image" align=left width="250">
-This series of papers starts with our NeurIPS paper, which details how to build
+This series of papers starts with our NeurIPS paper (NeurIPS 2018), which details how to build
 such a representation using a Variational Auto-Encoder (VAE), and a relaxation
 of the independence constraint to mutual information. The intution of the result
 is that compression and conditional reconstruction leads to invariance.
@@ -92,16 +97,57 @@ diffusion MRI.
 
 <br />
 <br />
+<ol>
+<li><span class="pub_title"><a href="https://arxiv.org/abs/1805.09458">Invariant Representations without Adversarial Training</a></span><br>
+<b>D Moyer</b>, S Gao, R Brekelmans, G Ver Steeg, A Galstyan, NIPS 2018</li>
+<li><span class="pub_title">Scanner Invariant Representations</span><br>
+Forthcoming</li>
+</ol>
 
 
+<br>
 <br>
 
 </div> <!--end of subsection-->
 
 <div id="subsection">
 <h1><span>Continuous Connectivity</span></h1>
-<a id="#inv-rep"><img src="imgs/r57.jpg" width="540"></a>
+<a id="#con-con"><img src="imgs/r57.jpg" width="540"></a>
 
+Connectomics (brain connectivity) is usually synonymous with graph theory.
+Brain regions or structures form nodes and some evidence of connectivity
+forms the edges (structural connections, functional correlations, etc.).
+
+<br />
+<br />
+
+Unfortunately in humans, there isn't agreement on which atlas of regions is
+correct; even conditioning on the subject's age, sex, the spatial scale, etc.,
+it's not clear that the "one true atlas" even exists.
+
+<br />
+<br />
+
+Are intuitions of brain connectivity wholly reliant upon the concept of brain
+atlases (parcellation)? In our first paper (MICCAI 2016), we answered this
+in the negative: we demonstrated a parcellation free model of connectivity,
+one that removes regions in favor of the continuum of the original spatial
+domain, the cortical surface.
+
+<br />
+<br />
+
+(As a technicality, this doesn't have to be the brain at all, but any spatial
+network. We haven't applied these methods to other spatial networks...yet ;D )
+
+<br />
+<br />
+
+After creating the initial model, we explored two extensions:
+<ol>
+<li> Learning the parcellation from the continuous density (IPMI 2017, MICCAI-MLMI 2018)</li>
+<li> Directly analyzing the density in a regression setting (forthcoming).
+</ol>
 
 </div> <!--end of subsection-->
 
