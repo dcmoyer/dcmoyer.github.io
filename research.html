@@ -56,6 +56,8 @@ program of research for all of these projects (with varying degrees of success).
 <br>
 <br>
 I'm happy to talk about any of them, so please drop me an email.
+
+<br>
 <br>
 
 </div> <!--end of subsection-->
@@ -100,8 +102,9 @@ diffusion MRI.
 <ol>
 <li><span class="pub_title"><a href="https://arxiv.org/abs/1805.09458">Invariant Representations without Adversarial Training</a></span><br>
 <b>D Moyer</b>, S Gao, R Brekelmans, G Ver Steeg, A Galstyan, NIPS 2018</li>
-<li><span class="pub_title">Scanner Invariant Representations</span><br>
-Forthcoming</li>
+<li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1904.05375">Scanner Invariant Representations for Diffusion MRI Harmonization</a></span><br>
+<b>D Moyer</b>, G Ver Steeg, CMW Tax, PM Thompsom, Preprint</li>
 </ol>
 
 
@@ -110,9 +113,11 @@ Forthcoming</li>
 
 </div> <!--end of subsection-->
 
+
+
 <div id="subsection">
 <h1><span>Continuous Connectivity</span></h1>
-<a id="#con-con"><img src="imgs/r57.jpg" width="540"></a>
+<a id="#concon"><img src="imgs/r57.jpg" width="540"></a>
 
 Connectomics (brain connectivity) is usually synonymous with graph theory.
 Brain regions or structures form nodes and some evidence of connectivity
@@ -121,7 +126,7 @@ forms the edges (structural connections, functional correlations, etc.).
 <br />
 <br />
 
-Unfortunately in humans, there isn't agreement on which atlas of regions is
+Unfortunately, in humans there isn't agreement on which atlas of regions is
 correct; even conditioning on the subject's age, sex, the spatial scale, etc.,
 it's not clear that the "one true atlas" even exists.
 
@@ -129,10 +134,10 @@ it's not clear that the "one true atlas" even exists.
 <br />
 
 Are intuitions of brain connectivity wholly reliant upon the concept of brain
-atlases (parcellation)? In our first paper (MICCAI 2016), we answered this
-in the negative: we demonstrated a parcellation free model of connectivity,
-one that removes regions in favor of the continuum of the original spatial
-domain, the cortical surface.
+atlases (parcellation)? In our first paper (MICCAI 2016/MedIA 2017), we
+answered this in the negative: we demonstrated a parcellation free model of
+connectivity, one that removes regions in favor of the continuum of the
+original spatial domain, the cortical surface.
 
 <br />
 <br />
@@ -143,10 +148,18 @@ network. We haven't applied these methods to other spatial networks...yet ;D )
 <br />
 <br />
 
-After creating the initial model, we explored two extensions:
+After creating the initial model, we explored an extension that learned 
+parcellations from a continuous density (IPMI 2017, MICCAI-MLMI 2018), and
+one that directly analyzed densities in a regression setting (forthcoming).
+
+<br />
+<br />
 <ol>
-<li> Learning the parcellation from the continuous density (IPMI 2017, MICCAI-MLMI 2018)</li>
-<li> Directly analyzing the density in a regression setting (forthcoming).
+<li> <span class="pub_title"><a href="https://www.ncbi.nlm.nih.gov/pubmed/28487128">Continuous Representations of Brain Connectivity using Spatial Point Processes</a></span><br>
+<b>D Moyer</b>, B Gutman, N Jahanshad, J Faskowitz, PM Thompson, MedIA 2017</li>
+<li>
+<span class="pub_title"><a href="https://arxiv.org/abs/1703.00981">A Restaurant Process Mixture Model for Connectivity Based Parcellation of the Cortex</a></span><br>
+<b>D Moyer</b>, B Gutman, N Jahanshad, PM Thompson, IPMI 2017</li>
 </ol>
 
 </div> <!--end of subsection-->
