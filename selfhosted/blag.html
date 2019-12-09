@@ -125,27 +125,30 @@ This works best when we have a good analytic description of the effect.
 In more general cases however, analytic solutions are not accessible. This is
 amplified somewhat by the rising use of neural networks, which themselves are
 usually not amicable to analytic results.
-In these cases a common solution is adversarial training.
+In these cases a common solution is adversarial training, which we''ll now construct
+informally.
 <br />
 <br />
-<b> Notations: </b>data $x$, encodings $z$, protected classes $c$.
+<i> Notations: </i>data $x$, encodings $z$, protected classes $c$, abstract primary task $\mathcal{L}$
+for which we want $c$-invariant solutions.
 <br />
 <br />
-<b> Recipe for adversarial invariance:</b> Train your favorite feature encoder $q(z|x)$,
-probably a deep network, for some task $\mathcal{L}[q(z|x)]$. Train an adversary $a(c|z)$
+<i> Recipe for adversarial invariance:</i> Train your favorite feature encoder $q(z|x)$,
+probably a deep network, for task $\mathcal{L}[q(z|x)]$. Train an adversary $a(c|z)$
 that tries to predict protected class $c$ from encoding $z$. If the adversary
-doesn't do well, congrats! We're invariant (up to our adversary $a$ and its training).
-If not...train $q(z|x)$ some more, this time adding the negative accuracy of $a(c|z)$
-to $\mathcal{L}$. Repeat.
+cannot predict $c$, congrats! We're invariant (up to our adversary $a$ and its training).
+If not, train $q(z|x)$ some more, this time adding the negative accuracy of $a(c|z)$
+to $\mathcal{L}$, so that hopefully $q$ will both solve $\mathcal{L}$ and not
+let the adversary $a$ be predictive of $c$. Retrain the adversary and repeat.
 <br />
 <br />
-Essentially what adversarial training does is set up a chump $a$ for $q$ to fight against.
-Our adversary $a$ tries to predict what $q$ is trying to forget, and $q$ in turn 
-tries to hide this information from $a$.
+In even more informal language, adversarial training sets up a chump $a$ for $q$ to fight against.
+Our chump adversary $a$ tries to predict what $q$ is trying to forget, and $q$ in turn 
+tries to hide this information from $a$ while still accomplishing its primary task.
 <br />
 <br />
 
-This actually re-occurs in the literature at least three times, albeit for different applications:
+This concept was discovered/introduced in the literature at least three times, albeit for different applications:
 <br />
 <br />
 <ul>
@@ -158,14 +161,18 @@ These methods work out alright in practice.
 
 <br />
 <br />
-Non-adversarial invariance isn't trying to rag on adversarial training.
-It works well usually, it's easy (conceptually), and it's fairly flexible
-in that it can be applied to many diverse cases. In practice I think you should
-always try the adversarial versions.
+Non-adversarial invariance, what we're about to construct, isn't trying to rag on adversarial training.
+Adversarial training is easy (conceptually), works well in many cases, and is fairly flexible
+in that it can be applied to many diverse situations. In practice I think you should
+always try the adversarial learning setup.
+<br />
+<br />
+However, we got curious about the theory behind adversarial invariance, and
+in digging into this theory we found a separate set of results, a non-adversarial
+training scheme.
+<br />
+<br />
 
-<br />
-<br />
-However, we got curious about the theory behind adversarial invariance. 
 Again denoting our data as $x$, the encoding as $z$, and the outside variable $c$
 (that we want to remove from $z$), the
 adversarial solution under Cross Entropy loss can be written as this
@@ -174,8 +181,7 @@ minimax game
 ~~ \underbrace{ \mathbb{E}_{x,c}[ \mathbb{E}_{q(z|x)}[ ~ -\log a(c | z) ~ ] ~ ] }_{\text{Adversarial Inv.}} +
 \underbrace{\mathbb{E}_{x\vphantom{q(z|x)}}[ ~\mathcal{L}[q(z|x)] ~]}_{ \text{Primary Task} }
 \]
-We've abstracted away the primary task into $\mathcal{L}$. Here, the best of all
-possible adversaries is the "actual likelihood" $p(c|z)$ (this result can be
+Here, the best of all possible adversaries is the "actual likelihood" $p(c|z)$ (this result can be
 seen from the properties cross-entropy).
 
 <br />
@@ -192,7 +198,7 @@ What we would really like to do is minimize mutual information, either through
 adversarial methods or otherwise. Invariance is statistically the same as
 $z \perp c$, and the minimal mutual information condition is a tractable
 relaxation of this.
-Once we know this fact, we can attempt attack the problem directly.
+Once we know this fact, we can attempt to attack the problem directly.
 Doing <a href="https://arxiv.org/abs/1805.09458">a little math</a>,
 we arrive at the following bound:
 \[ \Large
@@ -220,7 +226,7 @@ Further, if we can do perfect reconstruction, this bound is actually an equality
 There are only two things we can touch in this bound: the encoder $q(z|x)$ and
 the conditional decoder $p(x|z,c)$. In the next section we'll talk about implementation,
 but first I think it's important to talk about this intuition: the invariance
-bound we found is exactly <b>compressive encoding plus conditional reconstruction</b>. This
+bound we found is exactly <i>compressive encoding plus conditional reconstruction</i>. This
 means that if you compress (restrict the channel between $x$ and $z$) and you
 do conditional reconstruction, you will induce invariance to whatever you conditioned on.
 
@@ -417,7 +423,7 @@ and by using the mean embedding. And probably a billion other tricks.
 </br>
 </br>
 Okay, now for the more fun manipulation test: changing $c$ at test time.
-From <b>left to right</b> we have the original, then the reconstruction, 
+From <i>left to right</i> we have the original, then the reconstruction, 
 then the reconstruction with $c=0,\dots,9$.
 </br>
 </br>
@@ -427,7 +433,7 @@ then the reconstruction with $c=0,\dots,9$.
 </center>
 
 Okay, so while it doesn't work amazingly well (...some of those 2s and 9s are questionable),
-it <b>is</b> doing two things correctly:
+it <i>is</i> doing two things correctly:
 <br />
 <br />
 <ol>
@@ -444,6 +450,11 @@ nor was it to say that adversaries are universally bad. It was, for me, more to
 link adversaries to $I(z,c)$, and then link $I(z,c)$ to compression. We can come
 at $I(z,c)$ from both directions now, with upper and lower bounds, and we related
 it to an existing task, compressive reconstruction.
+
+<br />
+<br />
+
+Again, everything here can be found in <a href="https://github.com/dcmoyer/invariance-tutorial">this github repo</a>.
 
 <br />
 <br />
