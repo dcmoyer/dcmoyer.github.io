@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Homepage of Daniel Moyer.">
+  <title>DCM</title>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="../blag.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css">
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-autoloader.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js">
+  </script>
+</head>
+
+<body>
+
+
+<div id="wrapper">
+
+<div id="profile">
+<header>
+  <div id="name"><a href="../index.html">Daniel Moyer [home]</a></div>
+
+  <div id="profile_info">
+    <p>Post-doc at MIT CSAIL</p>
+  </div>
+
+  <div>
+    <ul id="profile_links">
+      <!--<li><a href=https://www.isi.edu/home>ISI</a></li>-->
+      <!--<li><a href=https://igc.ini.usc.edu>IGC</a></li>-->
+      <li><a href="CV.pdf">CV circa Aug 2019</a></li>
+      <li class="nobullet"><a href="http://twitter.com/dc_moyer"> Twitter</a></li>
+    </ul>
+  </div>
+  <div id="profile_contact">
+    dmoyer [at] aardvark.csail.mit.edu<br>
+    (no animal in actual address)
+  </div>
+</header>
+</div> <!--end of profile-->
+
+<div id="content">
+
+<div id="subsection">
+<h1><span>Notes on Non-adversarial Invariance</span></h1>
+<p>
+Recently I've been getting emails about our
+<a href="https://arxiv.org/abs/1805.09458">Invariant Representations paper</a>
+from last years NeurIPS. Since a lot of the questions overlap, and since I think
+the core idea of the paper is fairly basic once understood, I decided to write
+a short tutorial to try to explain the intution, and to provide a worked Keras
+example. The code and a jupyter notebook version of the notes can be found
+in <a href="https://github.com/dcmoyer/invariance-tutorial">this github repo</a>,
+which is written in TF/Keras.
+<br />
+<br />
+I'm definitely not a blogger (and this is definitely not a blog yet), so go easy!
+Please let me know if there ways to improve this.
+<br />
+<br />
+This tutorial requires basic variational auto-encoder knowledge, and some
+information theory knowledge, but otherwise should hopefully be pretty
+accessible. If you're not familiar with VAE, there's a great tutorial from
+Lilian Weng <a href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html">here</a>.
+I should find a good IT for ML tutorial, but I haven't yet, so if you know of
+a good one please link me and I will add it here! The standard reference text
+is Cover and Thomas
+<a href="https://www.amazon.ca/Elements-Information-Theory-Thomas-Cover/dp/0471241954">[amazon link]</a>
+, but that's complete overkill.
+</p>
+<br />
+
+<h2>Background</h2>
+<p>
+A surprisingly large amount of Machine Learning literature is about learning to ignore information.
+In computer vision we want to make features that ignore scale, or rotation, or shifts.
+For clinical studies, we want to ignore variations by specific confounders or 
+instruments. More recently, in algorithmic fairness we want to ignore information
+that would bias us against specific protected classes.
+<br />
+<br />
+Previously a lot of work did this analytically, for specific outside factors
+(e.g. rotation in images).
+This works best when we have a good analytic description of the effect;
+<br />
+<br />
+In more general cases however, for neural networks the most common solution
+was adversarial training. This actually re-occurs in the literature at least
+three times, albeit for different applications:
+<br />
+<br />
+<ul>
+<li><a href="https://arxiv.org/abs/1505.07818">Ganin et al. 2015 Domain Adversarial Training of Neural Networks</a></li>
+<li><a href="https://arxiv.org/abs/1705.11122">Xie et al. 2017 Controllable Invariance through Adversarial Feature Learning</a></li>
+<li><a href="https://arxiv.org/abs/1706.00409">Lampel et al. 2017 Fader networks</a></li>
+</ul>
+<br />
+These methods work out alright in practice.
+
+<br />
+<br />
+Non-adversarial invariance isn't trying to rag on adversarial training.
+It wokrs well usually, it's easy (conceptually), and it's fairly flexible
+in that it can be applied to many diverse cases. In practice I think you should
+always try the adversarial versions.
+
+<br />
+<br />
+However, we got curious about the theory behind adversarial invariance. 
+Denoting our data as $x$, the encoding as $z$, and the outside variable $c$
+(that we want to remove from $z$), the
+adversarial solution under Cross Entropy loss can be written as this
+minimax game
+\[ \Large \min_{q(z|x)}\max_{a(c|z)}
+~~ \underbrace{ \mathbb{E}_{x,c}[ \mathbb{E}_{q(z|x)}[ ~ -\log a(c | z) ~ ] ~ ] }_{\text{Adversarial Inv.}} +
+\underbrace{\mathbb{E}_{x\vphantom{q(z|x)}}[ ~\mathcal{L}[q(z|x)] ~]}_{ \text{Primary Task} }
+\]
+We've abstracted away the primary task into $\mathcal{L}$. Here, the best of all
+possible adversaries is the "actual likelihood" $p(c|z)$ (this result can be
+seen from the propoerties cross-entropy).
+
+<br />
+<br />
+This adversarial cross-entropy term can be transformed into mutual information
+by adding a constant entropy term, and that is where our story really begins:
+\[ \Large \underbrace{\inf_{a} ~\mathbb{E}_{q(z|x)}[ ~ -\log a(c | z) ~ ] ~ ]}_{\text{Best Case Adversarial Inv.}} ~= -H(c|z)\]
+\[ \Large H(c) - H(c|z) = I(c,z) \]
+
+<br />
+<h2> Minimal Mutual Information </h2>
+
+What we would really like to do is minimize mutual information, either through
+adversarial methods or otherwise. Invariance is statistically the same as
+$z \perp c$, and the minimal mutual information condition is a tractable
+relaxation of this.
+Once we know this fact, we can attempt attack the problem directly.
+Doing <a href="https://arxiv.org/abs/1805.09458">a little math</a>,
+we arrive at the following bound:
+\[ \Large
+I(z, c) \leq
+\underbrace{- \mathbb{E}_{x,c,z\sim q}[ \log p(x|z,c)]}_{\text{Reconstruction}}
++ \underbrace{\mathbb{E}_{x}[~KL[~q(z|x)~\|~q(z)~]~  ]}_{\text{Compression}}
+- \underbrace{\vphantom{\mathbb{E}_{x,q}[]}H(x|c)}_{\text{Const}}
+\]
+ Here, the compression term is a synonym for $I(z,x)$, and in that term $q(z)$ is the
+empirical marginal:
+\[ \Large
+q(z) = \int q(z|x) p(x) dx
+\]
+Minimizing this bound is a different proxy for minimizing $I(z,c)$, one that
+is a) loose in the conservative direction (always an upper bound, while adversaries
+are always a lower bound), and b) trades adversarial inaccuracy for conditional
+reconstruction error. In the adversarial set up, our error came from the inaccuracy
+of the adversary in approximating the best of all adversaries. In this set up,
+the looseness of our bound is from the inaccuracy of the reconstruction term.
+Further, if we can do perfect reconstruction, this bound is actually an equality.
+
+
+<br />
+<br />
+There are only two things we can touch in this bound: the encoder $q(z|x)$ and
+the conditional decoder $p(x|z,c)$. In the next section we'll talk about implementation,
+but first I think it's important to talk about this intuition: the invariance
+bound we found is exactly <b>compressive encoding plus conditional reconstruction</b>. This
+means that if you compress (restrict the channel between $x$ and $z$) and you
+do conditional reconstruction, you will induce invariance to whatever you conditioned on.
+
+<br />
+<br />
+That's it. That's all there is to it. This bound is as tight as the error 
+of the conditional decoder, so if you can auto-encode successfully, and you're
+using a compressive encoding, you'll get invariance. This is, in my opinion
+why the <a href="https://arxiv.org/abs/1511.00830">Variational Fair Auto-Encoder</a>
+works so well. It also, in my opinion, illustrates the importance of the
+<a href="https://arxiv.org/abs/1711.00464">Rate-Distortion view of auto-encoders</a>.
+We derived this without knowing about the distribution $q(z|x)$,
+so if you choose a <a href="https://arxiv.org/abs/1904.07199">different noise model</a>
+besides the usual conditional gaussian we can still learn invariant representations.
+In fact, we didn't even assume that $q$ and $p$ are neural networks, so if you
+have a separate parameterization (GPs?), you could use that and still have
+exactly the same $I(z,c)$ bound. 
+
+<br />
+<br />
+
+If you can't auto-encode, or if auto-encoding/reconstruction is expensive,
+you should use one of the adversarial methods. Remember, they're still okay!
+Give your adversary more training epochs, maybe even different training dynamics,
+and it hopefully will work out.
+
+<h2>Implementation for Gaussian VAE</h2>
+
+The "TODO List":
+<ol>
+<li>Make a Gaussian encoder, $q(z|x)$.</li>
+<li>Make a conditional decoder, $p(x|z,c)$.</li>
+<li>Implement the compression: $I(x,z) = KL[~q(z|x)~\|~q(z)~]$ </li>
+</ol>
+
+<br />
+
+Here's a picture of where we're going:
+<br />
+<br />
+<center>
+<img src="../imgs/Tutorial_Inv_AE_fig.jpg" width="60%"></img>
+</center>
+<br />
+<br />
+
+If we choose to do this for conditional gaussian $q(z|x)$, our implementation
+will look a lot like vanilla conditional VAE. Encoder and decoder are almost
+straight out of the Keras Tutorial, with an additional $c$ input at the
+latent rep. layer $z$.
+
+<pre>
+<code class="language-python">
+#declare inputs to the encoder, which is just x
+input_x = keras.layers.Input( shape = [INPUT_SHAPE], name="x" )
+
+enc_hidden_1 = keras.layers.Dense(512, activation=ACTIVATION, name="enc_h1")(input_x)
+enc_hidden_2 = keras.layers.Dense(512, activation=ACTIVATION, name="enc_h2")(enc_hidden_1)
+
+#first output, z_mean
+z_mean = keras.layers.Dense(DIM_Z, activation=ACTIVATION)(enc_hidden_2)
+#second hidden output, z_log_sigma_sq.
+z_log_sigma_sq = keras.layers.Dense(DIM_Z, activation="linear")(enc_hidden_2)
+
+#stolen straight from the docs
+#https://keras.io/examples/variational_autoencoder/
+def sampling(args):
+    z_mean, z_log_var = args
+    batch = K.shape(z_mean)[0]
+    dim = K.int_shape(z_mean)[1]
+    return z_mean + K.exp(0.5 * z_log_var) * K.random_normal(shape=(batch, dim))
+
+z_mean = keras.layers.Dense(DIM_Z, activation="tanh")(enc_hidden_2)
+z_log_sigma_sq = keras.layers.Dense(DIM_Z, activation="linear")(enc_hidden_2)
+
+z = keras.layers.Lambda(sampling, output_shape=(DIM_Z,), name='z')([z_mean, z_log_sigma_sq])
+
+#declare any additional inputs to our decoder, in this case c
+input_c = keras.layers.Input( shape = [DIM_C], name="c")
+#this is the concat operation!
+z_with_c = keras.layers.concatenate([z,input_c])
+
+dec_hidden_1 = keras.layers.Dense(512, activation=ACTIVATION, name="dec_h1")(z_with_c)
+dec_hidden_2 = keras.layers.Dense(512, activation=ACTIVATION, name="dec_h2")(dec_hidden_1)
+
+x_hat = keras.layers.Dense( INPUT_SHAPE, name="x_hat", activation="linear" )(dec_hidden_2)
+</code>
+</pre>
+
+So far we've got a path from $x$ to $z$ and then from $(z,c)$ back to $x$.
+Note that this is just one way to implement the conditional dependence of $p(x|z,c)$,
+and a particularly weak and naive one at that. There isn't to my knowledge
+a standard way of doing this yet. In this one, we just concatenated $z$ and $c$.
+<a href="https://arxiv.org/abs/1706.00409">Fader networks</a> suggested
+concatentating at every output layer. There are probably even better ways of
+doing this, and if you know about them I would love to know about them too, email
+me and we can list them here.
+
+<br />
+<br />
+Okay, let's build the loss functions. There are three terms:
+<br />
+<ol>
+<li>Reconstruction $\|x - \hat{x}\|$</li>
+<li>Shrinkage to Prior $KL[ ~ q(z|x) ~ | ~ \mathcal{N}(0,I) ~ ]$</li>
+<li>Shrinkage to Posterior $I(x,z) = KL[~q(z|x)~\|~q(z)~]$ </li>
+</ol>
+<br />
+
+The reconstruction loss is built into Keras, and the prior loss is pretty easy
+to construct for diagonal gaussians (see the <a href="https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Multivariate_normal_distributions">Wikipedia page</a>).
+The third loss we will approximate using per batch all-pairs KL divergence.
+The tensor form of this is a bit involved, but the code is
+<a href="https://github.com/dcmoyer/invariance-tutorial/blob/master/src/kl_tools.py">on the github</a>.
+It is quadratic in batch-size, and only contains linear and elementwise operations.
+
+<pre><code class="language-python">
+params = {
+  "beta" : 0.1,
+  "lambda" : 1.0,
+}
+
+recon_loss = keras.losses.mse(input_x, x_hat)
+recon_loss *= INPUT_SHAPE #optional, in the tutorial code though
+
+prior_loss = 1 + z_log_sigma_sq - K.square(z_mean) - K.exp(z_log_sigma_sq)
+prior_loss = K.sum(prior_loss, axis=-1)
+prior_loss *= -0.5
+
+#see src/kl_tools.py
+kl_qzx_qz_loss = kl_tools.kl_conditional_and_marg(z_mean, z_log_sigma_sq, DIM_Z)
+
+#full loss
+icvae_loss = K.mean(
+  (1 + params["lambda"]) * recon_loss + 
+  params["beta"]*prior_loss + 
+  params["lambda"]*kl_qzx_qz_loss
+)
+
+</code>
+</pre>
+<br />
+<br />
+Okay! So now we have a network and we have losses. We can choose a dataset,
+compile it all together, and train it.
+
+<pre>
+<code class="language-python">
+icvae = keras.models.Model(inputs=[input_x,input_c], outputs=x_hat, name="ICVAE")
+
+icvae.add_loss(icvae_loss)
+
+learning_rate = 0.0005
+opt = keras.optimizers.Adam(lr=learning_rate)
+
+icvae.compile( optimizer=opt, )
+icvae.fit(
+    { "x" : train_x, "c" : train_y }, epochs=100
+)
+
+</code>
+</pre>
+
+<h2> Some MNIST Results </h2>
+
+This section uses the vanilla MNIST dataset with 
+<pre>
+<code class="language-python">
+#these variables were actually defined BEFORE the previous sections
+DIM_Z = 16
+DIM_C = NUM_LABELS # just as an example. Sometimes we also have another y
+INPUT_SHAPE = IMG_DIM ** 2
+ACTIVATION = "tanh"
+</code>
+</pre>
+
+As a first check, we can look at the reconstruction. These are straight
+out of the notebook, so my apologies for quality.
+</br>
+</br>
+
+<center>
+<img src="../imgs/output_1.png" width=80%></img>
+</center>
+
+</br>
+</br>
+Even with minimal tuning and/or extra stuff, it seems to do fairly well.
+This is because the conditional auto-encoding task is MUCH easier than the
+non-conditional version. The outputs are fuzzy, but we can try to get rid of
+this by using a more powerful decoder, an image measure that isn't L2,
+and by using the mean embedding. And probably a billion other tricks.
+
+</br>
+</br>
+Okay, now for the more fun manipulation test: changing $c$ at test time.
+From <b>left to right</b> we have the original, then the reconstruction, 
+then the reconstruction with $c=0,\dots,9$.
+</br>
+</br>
+
+<center>
+<img src="../imgs/output_2.png" width=80%></img>
+</center>
+
+Okay, so while it doesn't work amazingly well (...some of those 2s and 9s are questionable),
+it <b>is</b> doing two things correctly:
+<br />
+<br />
+<ol>
+<li>Removing the input digit class, e.g. we can't see residual 0 bits when mapping 0 to other digits. </li>
+<li>Transfering some elements of the style, notably how dark digits are, how tilted each digit is, and their approximate vertical alignment.</li>
+</ol>
+<br />
+
+<h2> Wrapping up Part 1</h2>
+
+So we just constructed in theory and in 20ish lines of TF/Keras an invariant VAE.
+In my opinion, this exercise wasn't about building a SOTA invariance method,
+nor was it to say that adversaries are universally bad. It was, for me, more to
+link adversaries to $I(z,c)$, and then link $I(z,c)$ to compression. We can come
+at $I(z,c)$ from both directions now, with upper and lower bounds, and we related
+it to an existing task, compressive reconstruction.
+
+<br />
+<br />
+
+Next up next week(?): more theory for alternate $I(z,c)$ regularization,
+and an invariant prediction method.
+
+</p>
+
+</div>
+</div> <!--end of content-->
+
+</div> <!--end of wrapper-->
+</body>
+</html>
+
