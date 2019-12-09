@@ -94,20 +94,23 @@ is Cover and Thomas
 <h2>Background</h2>
 <p>
 A surprisingly large amount of Machine Learning literature is about learning to ignore information.
-In computer vision we want to make features that ignore scale, or rotation, or shifts.
-For clinical studies, we want to ignore variations by specific confounders or 
-instruments. More recently, in algorithmic fairness we want to ignore information
-that would bias us against specific protected classes.
+Examples include:
+<ul>
+<li> classic vision tasks of generating features that ignore scale, or rotation, or shifts,</li>
+<li> the statistical task of ignoring/regressing out specific confounders or instrument effects
+<li> the more recent task in algorithmic fairness of ignoring information
+that would bias us against specific protected classes
+</ul>
 <br />
 <br />
-Previously a lot of work did this analytically, for specific outside factors
+A lot of work has done this analytically, for specific outside factors
 (e.g. rotation in images).
-This works best when we have a good analytic description of the effect;
+This works best when we have a good analytic description of the effect.
 <br />
 <br />
-In more general cases however, for neural networks the most common solution
-was adversarial training. This actually re-occurs in the literature at least
-three times, albeit for different applications:
+In more general cases however, analytic solutions are not accessible.
+In these cases a common solution is adversarial training.
+This actually re-occurs in the literature at least three times, albeit for different applications:
 <br />
 <br />
 <ul>
@@ -121,7 +124,7 @@ These methods work out alright in practice.
 <br />
 <br />
 Non-adversarial invariance isn't trying to rag on adversarial training.
-It wokrs well usually, it's easy (conceptually), and it's fairly flexible
+It works well usually, it's easy (conceptually), and it's fairly flexible
 in that it can be applied to many diverse cases. In practice I think you should
 always try the adversarial versions.
 
