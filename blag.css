@@ -147,19 +147,19 @@ h2 {
 }
 
 #profile_info {
-  font-size: 15px;
+  font-size: 16px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 #profile_info p {
   display: block;
-  width: 240px;
+  width: 300px;
   text-align: left;
 }
 
 #profile_contact {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 #profile_links ul {
@@ -173,7 +173,7 @@ h2 {
 }
 
 #profile_links a {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 #profile_links li:after { content: " \00b7"; }
