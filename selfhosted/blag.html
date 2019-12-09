@@ -88,10 +88,23 @@ a good one please link me and I will add it here! The standard reference text
 is Cover and Thomas
 <a href="https://www.amazon.ca/Elements-Information-Theory-Thomas-Cover/dp/0471241954">[amazon link]</a>
 , but that's complete overkill.
+<br />
+<br />
+We'll start by building up adversarial invariance (that is, learning invariance
+using adversarial training), then we'll take a short walk through the math of what 
+invariance is attempting to do more generally. From this we'll construct
+an adversary-free invariance technique, and then we'll implement it.
+<br />
+<br />
+<b>THIS IS NOT RELATED TO ADVERSARIAL EXAMPLES. </b> Unfortunately there's a
+collision in terminology. We're talking about learning statistically invariant
+features, meaning $p(z|c) = p(z)$, not learning features that can't be changed
+under some adversarial optimization $opt_x(p(z|x))$. The second set of work is
+ super interesting and completely unrelated as far as I know.
 </p>
 <br />
 
-<h2>Background</h2>
+<h2>Background: Adversarial Invariance</h2>
 <p>
 A surprisingly large amount of Machine Learning literature is about learning to ignore information.
 Examples include:
@@ -109,8 +122,29 @@ A lot of work has done this analytically, for specific outside factors
 This works best when we have a good analytic description of the effect.
 <br />
 <br />
-In more general cases however, analytic solutions are not accessible.
+In more general cases however, analytic solutions are not accessible. This is
+amplified somewhat by the rising use of neural networks, which themselves are
+usually not amicable to analytic results.
 In these cases a common solution is adversarial training.
+<br />
+<br />
+<b> Notations: </b>data $x$, encodings $z$, protected classes $c$.
+<br />
+<br />
+<b> Recipe for adversarial invariance:</b> Train your favorite feature encoder $q(z|x)$,
+probably a deep network, for some task $\mathcal{L}[q(z|x)]$. Train an adversary $a(c|z)$
+that tries to predict protected class $c$ from encoding $z$. If the adversary
+doesn't do well, congrats! We're invariant (up to our adversary $a$ and its training).
+If not...train $q(z|x)$ some more, this time adding the negative accuracy of $a(c|z)$
+to $\mathcal{L}$. Repeat.
+<br />
+<br />
+Essentially what adversarial training does is set up a chump $a$ for $q$ to fight against.
+Our adversary $a$ tries to predict what $q$ is trying to forget, and $q$ in turn 
+tries to hide this information from $a$.
+<br />
+<br />
+
 This actually re-occurs in the literature at least three times, albeit for different applications:
 <br />
 <br />
@@ -132,7 +166,7 @@ always try the adversarial versions.
 <br />
 <br />
 However, we got curious about the theory behind adversarial invariance. 
-Denoting our data as $x$, the encoding as $z$, and the outside variable $c$
+Again denoting our data as $x$, the encoding as $z$, and the outside variable $c$
 (that we want to remove from $z$), the
 adversarial solution under Cross Entropy loss can be written as this
 minimax game
@@ -142,7 +176,7 @@ minimax game
 \]
 We've abstracted away the primary task into $\mathcal{L}$. Here, the best of all
 possible adversaries is the "actual likelihood" $p(c|z)$ (this result can be
-seen from the propoerties cross-entropy).
+seen from the properties cross-entropy).
 
 <br />
 <br />
