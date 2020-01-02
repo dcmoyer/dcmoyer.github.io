@@ -56,9 +56,23 @@ Unix Partition Mount On Startup</a><br />
 [ubuntu][tip] As of Nov 2019, <code>sudo apt-get install hugo</code> installs an old version (circa 2016). Install binaries from site instead.<br />
 [github][tensorflow] <a href="https://github.com/tensorflow/tensorflow/issues/24828#issuecomment-491310381">
 Can't find convolution algorithm, cuDNN failed to initialize.</a><br />
-[self-hosted][academia] <a href="/selfhosted/latex-for-journals.html">LaTeX for Journal Publications</a><br />
+[self-hosted][academia] <a href="/selfhosted/latex-for-journals.html">LaTeX for Journal Publications (ongoing notes)</a><br />
 </p>
 <br>
+
+<a name="smtp"></a>
+<h1><span>Setting up SMTP for Gmail (responding "as another account")</span></h1>
+<p>
+I couldn't find this when I googled. It's relatively easy, but I thought I should write it down.
+<ol>
+<li> Make a gmail account, and (optionally) set up automatic forwarding to that @gmail.com account from your host (e.g. the @csail.mit.edu account). </li>
+<li> Go to Settings, then Accounts, then "Send Mail As". At the time of writing, settings was the gear symbol in the righthand corner of the content box (above inbox, below header/searchbar).</li>
+<li> Add in a new email to send from. This requires the SMTP information (address, usualling outgoing.mail.edu, protocol), then some handshake stuff to make sure you're you.
+If you don't have this information, your admin should. MIT's can be found here: [<a href="https://tig.csail.mit.edu/email-communicating/msmtp-smtp-client/">SMTP</a>].</li>
+<li> After verification, for each new email you can set which account you're sending from by clicking/tapping on the "From" tab of the header of the email composition window. This can be defaulted from the same interface.
+</ol>
+</p>
+
 </div> <!--end of subsection-->
 
 
