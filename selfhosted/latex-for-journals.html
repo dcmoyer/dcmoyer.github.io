@@ -57,11 +57,29 @@ publications. This is a collection of my notes on this topic, and is obviously i
 <br />
 
 <b>[Tikz as images]</b>
+You can set up a compilable file for your tikz diagrams that will output just the diagram. This makes recompiling to EPS much easier, or translating to JPG for websites, etc.
+If you're not on <a href=https://www.overleaf.com/>Overleaf</a> then you could keep the Tikz code in a separate file that gets pulled into multiple main files. If you're on
+Overleaf, I suggest setting up multiple projects and including the output of one project in another (or just the Tikz code itself). Either way, the format you need for just the diagram
+itself with a cropped boundary is:
+
+<code>
+\documentclass[border={1pt 5pt 1pt 1pt}]{standalone}
+</code>
+
 <br />
 <br />
 
 
 <b>[EPS Files]</b> For whatever reason, some journals don't accept PNG or JPG image formats. They sometimes only accept TIFF and EPS. TIFF is scale-free and generally great w.r.t. image quality, but <a href="https://tex.stackexchange.com/questions/89989/add-tif-image-to-latex">can't be compiled into most standard LaTeX based PDFs</a>, which almost certainly excludes most journal systems.
+
+The local minima I've found myself in is taking all the figure code/tikz and smooshing it into one PDF file (see above). After that, I translate that PDF into EPS, using ghostscript. This is the one line of ghostscript that will get you there:
+
+<code>
+gs -q -dNOCACHE -dNOPAUSE -dBATCH -dSAFER -sDEVICE=eps2write -r600 -sOutputFile=OUTPUTFILE.eps INPUTFILE
+</code>
+
+What does it do? Lots of stuff I'm sure, but I really have no idea. All I know is that it seems to work, and nothing else does. A further word to the wise: keep the original image files around! And all in the same positions. If you do that, you'll be also ArXiv ready, because ArXiv does NOT accept EPS, because of course it doesn't.
+
 <br />
 <br />
 
