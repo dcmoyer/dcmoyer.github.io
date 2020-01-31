@@ -62,6 +62,9 @@ If you're not on <a href=https://www.overleaf.com/>Overleaf</a> then you could k
 Overleaf, I suggest setting up multiple projects and including the output of one project in another (or just the Tikz code itself). Either way, the format you need for just the diagram
 itself with a cropped boundary is:
 
+<br />
+<br />
+
 <code>
 \documentclass[border={1pt 5pt 1pt 1pt}]{standalone}
 </code>
@@ -74,9 +77,16 @@ itself with a cropped boundary is:
 
 The local minima I've found myself in is taking all the figure code/tikz and smooshing it into one PDF file (see above). After that, I translate that PDF into EPS, using ghostscript. This is the one line of ghostscript that will get you there:
 
+<br />
+<br />
+
 <code>
 gs -q -dNOCACHE -dNOPAUSE -dBATCH -dSAFER -sDEVICE=eps2write -r600 -sOutputFile=OUTPUTFILE.eps INPUTFILE
 </code>
+
+
+<br />
+<br />
 
 What does it do? Lots of stuff I'm sure, but I really have no idea. All I know is that it seems to work, and nothing else does. A further word to the wise: keep the original image files around! And all in the same positions. If you do that, you'll be also ArXiv ready, because ArXiv does NOT accept EPS, because of course it doesn't.
 
