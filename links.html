@@ -6,10 +6,30 @@
   <meta name="robots" content="index,follow">
   <meta name="description" content="Homepage of Daniel Moyer; quotes page">
   <title>DCM -- fNord</title>
+  <link rel="stylesheet" type="text/css" href="homepage.css">
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="../blag.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css">
+
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  <link rel="stylesheet" type="text/css" href="homepage.css">
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-autoloader.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js">
+  </script>
 </head>
 
 <body>
@@ -62,6 +82,9 @@ Keras General Loss Function from any defined layers/variables</a>
 <a name="smtp"></a>
 <h1><span>Setting up SMTP for Gmail</span></h1>
 <p>
+<b> January 2, 2020 </b>
+<br />
+<br />
 Also known as responding "as another account". I couldn't find this when I googled. It's relatively easy, but I thought I should write it down.
 <ol>
 <li> Make a gmail account, and (optionally) set up automatic forwarding to that @gmail.com account from your host (e.g. the @csail.mit.edu account). </li>
@@ -71,6 +94,38 @@ If you don't have this information, your admin should. MIT's can be found here: 
 <li> After verification, for each new email you can set which account you're sending from by clicking/tapping on the "From" tab of the header of the email composition window. This can be defaulted from the same interface. </li>
 </ol>
 </p>
+<br />
+<br />
+
+<a name="smtp"></a>
+<h1><span>Batch Sparse Matrix Multiply in Tensorflow</span></h1>
+<p>
+<b> May 15, 2020 </b>
+<br />
+<br />
+Tensorflow <code>SparseTensor</code> class does not support broadcasted matrix
+multiplies as of time-of-writing. This means that if you expect
+<code>tf.sparse.matmul</code> or <code>tf.sparse_dense_matmul</code> to behave the same as <code>tf.matmul</code>
+you'll end up with an exception for <code>rank>=3</code> sparse tensors.
+<br>
+<br>
+Still, there are ways around this for particular cases. If you know the
+<code>SparseTensor</code> is the same for across a whole batch, you can use
+<pre>
+<code class="language-python">
+output = \
+  tf.map_fn( lambda x : tf.sparse.sparse_dense_matmul( sp_ten, x ), dn_ten )
+</code>
+</pre>
+
+Alternatively, if you know the batch size, you can pair them together.
+<pre>
+<code class="language-python">
+tens = (sp_ten, dn_ten)
+output = \
+  tf.map_fn( lambda x : tf.sparse.sparse_dense_matmul( x[0], x[1] ), tens )
+</code>
+</pre>
 
 </div> <!--end of subsection-->
 
