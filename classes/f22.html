@@ -36,16 +36,22 @@
 
 <div id="content">
 <div id="subsection">
-<h1><span>CS 8395: Topics in Deep Learning</span></h1>
+<h1 style="margin-bottom:1em"><span>CS 8395: Selected Topics in Deep Learning</span></h1>
+</ br>
+
+<p style="margin-bottom:1em;">
+Deep learning has become an inseparable part of many tasks in AI/ML, ranging from language understanding and speech and image recognition to machine translation, planning, game playing, and autonomous driving, among many others. Expertise in deep learning is in high demand both in academic and industrial settings. This course provides a tour of a subset of representation learning topics in deep learning: auto-encoders from both Bayesian and Rate-Distortion (Information Bottleneck) perspectives, GANs, Flow models, Contrastive methods, and Score models. The course will provide brief historical context on the theory and guiding intuitions for each topic, as well as contemporary examples in the literature. In order to develop practical knowledge of the methods, students will complete a term project on one of the topics with guidance from the instructor.
+</p>
+</ br>
+<p style="margin-bottom:1em;">
+Familiarity with multivariate calculus, linear algebra, probability theory, {TF,pytorch} suggested. Prerequisite CS 5262 or equivalent.
+</p>
+</ br>
 
 </div>
 
 <div id="subsection">
 <h1><span>Schedule (Tentative)</span></h1>
-
-<p>
-<br><br><br>
-</p>
 
 <!-- table formatting stolen from https://cmu-multicomp-lab.github.io/adv-mmml-course/spring2022/schedule/-->
 <table class="table table-hover">
@@ -62,22 +68,22 @@
         </tr>
       </thead>
       <tbody>
-        <p>** Exact topics and schedule subject to change, based on student interests and course discussions. **</p>
+        <p>Exact topics and schedule subject to change, based on student interests and course discussions.</p>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">8/25</th>
     
     <td>
-        Week 1: <strong>Course introduction</strong>  <a href="EXAMPLE">[slides]</a> <a href="EXAMPLE">[synopsis]</a>
+        Lecture 1: <strong>Course introduction</strong>  <!--<a href="EXAMPLE">[slides]</a> <a href="EXAMPLE">[synopsis]</a>-->
  <br />
             <ul>
                
                   <li style="font-size:12px;">
-                     Course syllabus and requirements
+                      Course syllabus and requirements
                   </li>
                
                   <li style="font-size:12px;">
-                     Dimensions of multimodal heterogenity
+                      What makes a good representation?
                   </li>
                
         </ul>
@@ -85,10 +91,6 @@
     </td>
     <td>
         <ul>
-
-            <li style="font-size:12px;">
-               <a href="https://arxiv.org/abs/1705.09406">Multimodal Machine Learning&#58; A Survey and Taxonomy</a> <br />
-            </li>
 
             <li style="font-size:12px;">
                <a href="https://arxiv.org/abs/1206.5538">Representation Learning&#58; A Review and New Perspectives</a> <br />
@@ -100,10 +102,10 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">8/30</th>
     
     <td>
-        Week 2:
+        Lecture 2: Math &amp; Neural Network Review
  <br />
             <ul>
                
@@ -118,10 +120,28 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">9/1</th>
     
     <td>
-        Week 3:
+        Lecture 3: PCA &amp; Factor Analysis
+ <br />
+        <ul>
+
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/6</th>
+    
+    <td>
+        Lecture 4: Restricted Boltzman Machines
  <br />
             <ul>
                
@@ -136,10 +156,122 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">9/8</th>
     
     <td>
-        Week 4:
+        Lecture 5: RBM continued, Auto-encoders
+ <br />
+        <ul>
+            <li style="font-size:12px;">
+                Homework 1 Released? (TBD)
+            </li>
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/13</th>
+    
+    <td>
+        Lecture 6: Variational AE (Bayesian)
+ <br />
+        <ul>
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/15</th>
+    
+    <td>
+        Lecture 7: VAE Continued
+    <br />
+        <ul>
+
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/20</th>
+    
+    <td>
+        Lecture 8: Rate-Distortion
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/22</th>
+    
+    <td>
+        Lecture 9: Information Bottleneck
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/27</th>
+    
+    <td>
+        Lecture 10: VAE from Rate-Distortion
+    <br />
+            <ul>
+            <li style="font-size:12px;">
+                Homework 2 Released (TBD)
+            </li>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">9/29</th>
+    
+    <td>
+        Lecture 11: GANs
  <br />
             <ul>
                
@@ -154,10 +286,10 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/4</th>
     
     <td>
-        Week 5:
+        Lecture 12:
  <br />
             <ul>
                
@@ -172,10 +304,10 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/6</th>
     
     <td>
-        Week 6:
+        Lecture 13: GANs
  <br />
             <ul>
                
@@ -190,11 +322,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/11</th>
     
     <td>
-        Week 7:
- <br />
+        Lecture 14: Info-GANs
+    <br />
             <ul>
                
         </ul>
@@ -208,11 +340,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/13</th>
     
     <td>
-        Week 8:
- <br />
+        No Class! Fall Break
+    <br />
             <ul>
                
         </ul>
@@ -226,11 +358,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/18</th>
     
     <td>
-        Week 9:
- <br />
+        Lecture 15: GAN Variants, GANs in practice
+    <br />
             <ul>
                
         </ul>
@@ -244,11 +376,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/20</th>
     
     <td>
-        Week 10:
- <br />
+        Lecture 16: Flow Models/Buffer
+    <br />
             <ul>
                
         </ul>
@@ -262,11 +394,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/25</th>
     
     <td>
-        Week 11:
- <br />
+        Lecture 17: Flow Models/Buffer
+    <br />
             <ul>
                
         </ul>
@@ -280,11 +412,48 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">10/27</th>
     
     <td>
-        Week 12:
- <br />
+        [TBD]
+    <br />
+            <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+
+<tr class="past">
+    <th scope="row">11/1</th>
+    
+    <td>
+        Lecture 18: Augmentation (for Rep.)
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">11/3</th>
+    
+    <td>
+        Lecture 19: Invariance &amp; Equivariance in Rep.
+    <br />
             <ul>
                
         </ul>
@@ -298,11 +467,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">11/8</th>
     
     <td>
-        Week 13:
- <br />
+        Lecture 20: Contrastive Estimation
+    <br />
             <ul>
                
         </ul>
@@ -316,11 +485,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">11/10</th>
     
     <td>
-        Week 14:
- <br />
+        Lecture 21: Constrastive Estimation 2 (InfoNCE)
+    <br />
             <ul>
                
         </ul>
@@ -334,11 +503,11 @@
 </tr>
 
 <tr class="past">
-    <th scope="row">1/21</th>
+    <th scope="row">11/15</th>
     
     <td>
-        Week 15:
- <br />
+        Lecture 22: Constrastive Estimation 3/Buffer
+    <br />
             <ul>
                
         </ul>
@@ -350,6 +519,133 @@
         </ul>
     </td>
 </tr>
+
+<tr class="past">
+    <th scope="row">11/17</th>
+    
+    <td>
+        Lecture 23: TBD? (D)AE 3, Score Models
+    <br />
+            <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">11/22</th>
+    
+    <td>
+        No Class! Thanksgiving Break
+    <br />
+            <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">11/24</th>
+    
+    <td>
+        No Class! Thanksgiving Break
+    <br />
+            <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">11/29</th>
+    
+    <td>
+        Lecture 24: Score Models 2
+    <br />
+            <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">12/1</th>
+    
+    <td>
+        Lecture 25: Diffusion Models (Overview, or Guest Speaker TBD)
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">12/6</th>
+    
+    <td>
+        Project Presentations, or Buffer
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
+<tr class="past">
+    <th scope="row">12/8</th>
+    
+    <td>
+        Project Presentations, and Recap
+    <br />
+        <ul>
+               
+        </ul>
+
+    </td>
+    <td>
+        <ul>
+
+        </ul>
+    </td>
+</tr>
+
 
       </tbody>
     </table>
