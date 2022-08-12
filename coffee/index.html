@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="A blog post on Non-adversarial Invariance methods, with an example in Keras and silly MNIST pictures.">
+  <title>Nashville, Coffee</title>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="../blag.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css">
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-autoloader.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js">
+  </script>
+</head>
+
+<body>
+
+
+<div id="wrapper">
+
+<div id="profile">
+<header>
+  <div id="name"><a href="../index.html">Daniel Moyer [home]</a></div>
+
+  <div id="profile_info">
+    <p>Post-doc at MIT CSAIL</p>
+  </div>
+
+  <div>
+    <ul id="profile_links">
+      <!--<li><a href=https://www.isi.edu/home>ISI</a></li>-->
+      <!--<li><a href=https://igc.ini.usc.edu>IGC</a></li>-->
+      <li><a href="CV.pdf">CV circa Aug 2019</a></li>
+      <li class="nobullet"><a href="http://twitter.com/dc_moyer"> Twitter</a></li>
+    </ul>
+  </div>
+  <div id="profile_contact">
+    dmoyer [at] aardvark.csail.mit.edu<br>
+    (no animal in actual address)
+  </div>
+</header>
+</div> <!--end of profile-->
+
+<div id="content">
+
+<div id="subsection">
+<h1><span>Coffee shops of the Greater Nashville Metropolitan Area</span></h1>
+<p>
+An incomplete survey of coffee shops in Nashville, TN, and the surrounding area,
+with particular focus on South Davidson and North Wiliamson counties. Assessments
+made on coffee (drip), sometimes espresso, parking, wifi, power outlets, and seating.
+</p>
+
+<br />
+
+<h2>The Well Coffeehouse, Brentwood</h2>
+<ul>
+<li>Date: July, 2022</li>
+<li>Drip Coffee: Okay</li>
+<li>Espresso: ? (Didn't Try)</li>
+<li>Parking: Good</li>
+<li>Wifi: Really Bad/Unusable</li>
+<li>Power Outlets: Some</li>
+<li>Seating: Good</li>
+</ul>
+<br />
+<p>
+<b>Notes:</b>
+Friendly staff, terrible internet. Slow and/or non-existant captive login page.
+</p>
+
+
+
+<h2>Just Love Coffee Cafe, Brentwood</h2>
+<ul>
+<li>Date: August, 2022</li>
+<li>Drip Coffee: Okay</li>
+<li>Espresso: ? (Didn't Try)</li>
+<li>Parking: Good</li>
+<li>Wifi: Good*</li>
+<li>Power Outlets: Good</li>
+<li>Seating: Good</li>
+</ul>
+<br />
+<p>
+<b>Notes:</b>
+Friendly staff, pretty standard coffee, power at the long
+counters/lower tables. Additional parking in the business park nearby. Wifi
+requires a Facebook captive-portal login(!), but otherwise stable. Seating
+may be challenging, but only at peak hours. Overall, a good place to work.
+<br />
+<br />
+For whatever reason, every sandwich appears to be pressed by a waffle iron,
+instead of a panini press. Still good, but perhaps a bit buttery.
+</p>
+
+
+
+<h2>Fido, Hillsboro West-End/Vanderbilt</h2>
+<ul>
+<li>Date: August, 2022</li>
+<li>Drip Coffee: Good</li>
+<li>Espresso: Good</li>
+<li>Parking: Terrible</li>
+<li>Wifi: Good</li>
+<li>Power Outlets: Okay</li>
+<li>Seating: Good</li>
+</ul>
+<br />
+<p>
+<b>Notes:</b>
+Friendly staff, good coffee (by Bongo Java), power only at counters
+as far as I can tell. No parking, and very limited parking nearby. Wifi stable
+and relatively fast. Hip, I am probably too stuffily dressed.
+</p>
+
+<h2>Barista Parlor, Hillsboro West-End/Vanderbilt</h2>
+<ul>
+<li>Date: August, 2022</li>
+<li>Drip Coffee: Great</li>
+<li>Espresso: Interesting</li>
+<li>Parking: Terrible</li>
+<li>Wifi: Good</li>
+<li>Power Outlets: Good</li>
+<li>Seating: Okay</li>
+</ul>
+<br />
+<p>
+<b>Notes:</b>
+Great coffee, interesting espresso choices (...espresso and tonic?),
+power at every table. Seating somewhat limited. Parking the same as Fido across the street,
+terrible and limited. Wifi also stable and fast. Pretty good peg-board of events.
+Very Hip, I am definitely too stuffily dressed, but quiet/medium volume music.
+</p>
+
+
+<h2>Starbucks on Nolensville Pike, South-east Davidson County</h2>
+<ul>
+<li>Date: August, 2022</li>
+<li>Drip Coffee: Starbucks</li>
+<li>Espresso: Starbucks</li>
+<li>Parking: Great</li>
+<li>Wifi: Good*</li>
+<li>Power Outlets: Great</li>
+<li>Seating: Good</li>
+</ul>
+<br />
+<p>
+<b>Notes:</b>
+It's a Starbucks. If you need a clean place to work with AC, this is
+a good Starbucks. One long table, four or five small tables, some small cushioned
+chairs, all with power. Wifi requires email address, and permission to spam.
+Closes late, nearby Prince's Hot Chicken, as well as "Sub-culture Urban Cafe",
+which sounds interesting but also less work-accessible.
+</p>
+
+
+
+
+
+
+</div>
+</div> <!--end of content-->
+
+</div> <!--end of wrapper-->
+</body>
+</html>
+
